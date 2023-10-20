@@ -1,0 +1,12 @@
+db-sqlite3
+streamlit
+streamlit-chat
+langchain
+streamlit-option-menu
+langchain-experimental
+python-dotenv
+mysql-connector-python
+SQLAlchemy
+streamlit-server-state
+
+psycopg2-binary

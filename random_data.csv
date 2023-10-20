@@ -1,0 +1,11 @@
+user_id,product_id,product_name,brand,category,price,color,size
+1581,76,Product_1,Brand_1,Category_1,61.195061580441774,Color_1,Size_1
+1438,14,Product_2,Brand_2,Category_2,44.26327738923531,Color_2,Size_2
+1722,18,Product_3,Brand_3,Category_3,20.623682800131135,Color_3,Size_3
+1840,66,Product_4,Brand_4,Category_4,45.63355046509012,Color_4,Size_4
+1337,61,Product_5,Brand_5,Category_5,11.09370626674923,Color_5,Size_5
+1088,10,Product_6,Brand_6,Category_6,42.44010482995135,Color_6,Size_6
+1276,37,Product_7,Brand_7,Category_7,42.75950498314625,Color_7,Size_7
+1180,15,Product_8,Brand_8,Category_8,63.84462751101171,Color_8,Size_8
+1715,80,Product_9,Brand_9,Category_9,70.29377842791371,Color_9,Size_9
+1579,21,Product_10,Brand_10,Category_10,58.857069375756375,Color_10,Size_10
