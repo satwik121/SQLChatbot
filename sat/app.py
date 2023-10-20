@@ -107,6 +107,7 @@ def main():
         
         if db_type == "MySQL":
             sql_uri = f"mysql+mysqlconnector://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+            st.write(sql_uri)
             # sql_uri = f"mysql+mysqlconnector://root:localadmin@localhost:3306/adventureworks"
             #sql_uri = "mssql+pyodbc://@CBLLAP0315\SQLEXPRESS/AdventureWorks2022?driver=ODBC+Driver+17+for+SQL+Server"
             #sql_uri = ""
@@ -123,6 +124,7 @@ def main():
     try:
         if connect_button:
             # sql_uri = f"mysql+mysqlconnector://root:localadmin@localhost:3306/adventureworks"
+            st.write(sql_uri)
             input_db = SQLDatabase.from_uri(sql_uri)
             st.session_state.input_db = input_db
             st.sidebar.success("Connected")
