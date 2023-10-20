@@ -119,9 +119,10 @@ def main():
  
         # else:
         #     st.sidebar.error("Invalid Database Type selected")
-
+    sql_uri = f"mysql+mysqlconnector://root:localadmin@localhost:3306/adventureworks"
     try:
         if connect_button:
+            sql_uri = f"mysql+mysqlconnector://root:localadmin@localhost:3306/adventureworks"
             input_db = SQLDatabase.from_uri(sql_uri)
             st.session_state.input_db = input_db
             st.sidebar.success("Connected")
