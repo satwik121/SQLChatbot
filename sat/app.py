@@ -95,7 +95,7 @@ def main():
     load_dotenv()
 
     with st.sidebar:
-        db_type = st.radio("Select Database Type", ["MySQL", "PostgreSQL"])
+        db_type = st.radio("Select Database Type", ["MySQL", "PostgreSQL", "default"])
         db_host = st.text_input("Enter Database Host", placeholder="Enter Database Host")
         db_port = st.text_input("Enter Database Port", placeholder="Enter Database Port", 
                                 help="Default port is 5432 for PostgreSQL and 3306 for MySQL")
@@ -108,13 +108,16 @@ def main():
 
         
         if db_type == "MySQL":
-            #sql_uri = f"mysql+mysqlconnector://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
-            sql_uri = f"mysql+mysqlconnector://root:localadmin@localhost:3306/adventureworks"
+            sql_uri = f"mysql+mysqlconnector://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+            # sql_uri = f"mysql+mysqlconnector://root:localadmin@localhost:3306/adventureworks"
             #sql_uri = "mssql+pyodbc://@CBLLAP0315\SQLEXPRESS/AdventureWorks2022?driver=ODBC+Driver+17+for+SQL+Server"
             #sql_uri = ""
 
         elif db_type == "PostgreSQL":
             sql_uri = f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+        
+        elif db_type == 'default':
+            sql_uri = f"mysql+mysqlconnector://root:localadmin@localhost:3306/adventureworks"
 
         # elif db_type == "SQLite":
         #     sql_uri = f"sqlite:///{db_name}.db"
