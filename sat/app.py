@@ -73,11 +73,11 @@ def sql_agent_response(input, input_db):
 
 
 
-def sql_table(input,input_db):
+def sql_table(input,input_db, api_key):
 
     from langchain.chat_models import ChatOpenAI
     from langchain.chains import create_sql_query_chain
-    llm = OpenAI(temperature=0)
+    llm = OpenAI(temperature=0, openai_api_key = api_key)
     # prom = """
     #     safety stock = max value * max val delay - avg val * avg val delay
     # """
@@ -102,12 +102,14 @@ def main():
         db_name = st.text_input("Enter Database Name", placeholder="Enter Database Name")
         db_user = st.text_input("Enter Database User", placeholder="Enter Database User")
         db_password = st.text_input("Enter Database Password", "", type="password")
+
+        api_key = st.text_input("Enter open_api_key", type="password")
         connect_button = st.button("Connect")
 
         
         if db_type == "MySQL":
-            sql_uri = f"mysql+mysqlconnector://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
-            # sql_uri = f"mysql+mysqlconnector://root:localadmin@localhost:3306/adventureworks"
+            #sql_uri = f"mysql+mysqlconnector://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+            sql_uri = f"mysql+mysqlconnector://root:localadmin@localhost:3306/adventureworks"
             #sql_uri = "mssql+pyodbc://@CBLLAP0315\SQLEXPRESS/AdventureWorks2022?driver=ODBC+Driver+17+for+SQL+Server"
             #sql_uri = ""
 
@@ -122,7 +124,7 @@ def main():
     # sql_uri = f"mysql+mysqlconnector://root:localadmin@localhost:3306/adventureworks"
     try:
         if connect_button:
-            # sql_uri = f"mysql+mysqlconnector://root:localadmin@localhost:3306/adventureworks"
+            st.write(sql_uri)
             input_db = SQLDatabase.from_uri(sql_uri)
             st.session_state.input_db = input_db
             st.sidebar.success("Connected")
@@ -207,7 +209,7 @@ def main():
         type12 = st.radio("Answer Type", ["Table", "Text"])
 
         if type12 == "Table":
-            query = sql_table(user_input, input_db)
+            query = sql_table(user_input, input_db, api_key)
             print(query)
             engine = create_engine(sql_uri)
             connection = engine.connect()
