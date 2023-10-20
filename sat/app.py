@@ -73,7 +73,7 @@ def sql_agent_response(input, input_db):
 
 
 
-def sql_table(input,input_db):
+def sql_table(input,input_db, open_ai_key):
 
     from langchain.chat_models import ChatOpenAI
     from langchain.chains import create_sql_query_chain
@@ -81,7 +81,7 @@ def sql_table(input,input_db):
     # prom = """
     #     safety stock = max value * max val delay - avg val * avg val delay
     # """
-    chain = create_sql_query_chain(llm, input_db)
+    chain = create_sql_query_chain(llm, input_db, openai_api_key = open_ai_key)
 
     response = chain.invoke({"question":input})
 
@@ -102,6 +102,7 @@ def main():
         db_name = st.text_input("Enter Database Name", placeholder="Enter Database Name")
         db_user = st.text_input("Enter Database User", placeholder="Enter Database User")
         db_password = st.text_input("Enter Database Password", "", type="password")
+        open_ai_key = st.text_input("Enter openai key")
         connect_button = st.button("Connect")
 
         
@@ -209,7 +210,7 @@ def main():
         type12 = st.radio("Answer Type", ["Table", "Text"])
 
         if type12 == "Table":
-            query = sql_table(user_input, input_db)
+            query = sql_table(user_input, input_db, open_ai_key)
             print(query)
             engine = create_engine(sql_uri)
             connection = engine.connect()
